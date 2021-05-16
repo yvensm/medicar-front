@@ -1,0 +1,30 @@
+<form class="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Email ou Login</mat-label>
+    <input
+      matInput
+      placeholder="Email ou Login"
+      [(ngModel)]="user.username"
+      name="username"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="password">
+    <mat-label>Senha</mat-label>
+    <input
+      matInput
+      placeholder="Senha"
+      [(ngModel)]="user.password"
+      name="password"
+      type="password"
+      [attr.type]="viewPassword ? 'text' : 'password'"
+    />
+
+    <mat-icon matSuffix (click)="toggleViewPassword()">visibility</mat-icon>
+  </mat-form-field>
+  <mat-checkbox> Lembrar minha senha </mat-checkbox>
+
+  <div class="buttons">
+    <button mat-button color="accent" (click)="register()">Criar Conta</button>
+    <button mat-raised-button color="primary" (click)="login()">Acessar</button>
+  </div>
+</form>

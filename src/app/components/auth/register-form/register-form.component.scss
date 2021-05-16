@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field mat-icon {
+  color: #a8a8a8;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 45%;
+  height: 40px;
+  font-size: 21px;
+}
+
+mat-form-field mat-icon {
+  cursor: pointer;
+}

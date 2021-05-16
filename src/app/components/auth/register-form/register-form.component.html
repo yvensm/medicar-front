@@ -1,0 +1,95 @@
+<form class="form" [formGroup]="registerForm">
+  <mat-form-field appearance="outline" class="my-form-field">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome" name="name" formControlName="username" />
+    <div
+      *ngIf="
+        registerForm.controls.username.invalid &&
+        (registerForm.controls['username'].dirty ||
+          registerForm.controls['username'].touched)
+      "
+      class="alert alert-danger"
+    ></div>
+    <mat-error *ngIf="registerForm.controls.username.errors?.required"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" name="email" formControlName="email" />
+    <div
+      *ngIf="
+        registerForm.controls.email.invalid &&
+        (registerForm.controls.email.dirty ||
+          registerForm.controls.email.touched)
+      "
+      class="alert alert-danger"
+    ></div>
+    <mat-error *ngIf="registerForm.controls.email.errors?.email"
+      >Email Inválido</mat-error
+    >
+    <mat-error *ngIf="registerForm.controls.email.errors?.required"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="password">
+    <mat-label>Senha</mat-label>
+    <input
+      matInput
+      placeholder="Senha"
+      name="password"
+      formControlName="password"
+      [attr.type]="viewPassword ? 'text' : 'password'"
+    />
+    <mat-icon matSuffix (click)="toggleViewPassword()">visibility</mat-icon>
+    <div
+      *ngIf="
+        registerForm.controls.password.invalid &&
+        (registerForm.controls.password.dirty ||
+          registerForm.controls.password.touched)
+      "
+      class="alert alert-danger"
+    ></div>
+    <mat-error *ngIf="registerForm.controls.password.errors?.required"
+      >Campo Obrigatório</mat-error
+    >
+    <mat-error *ngIf="registerForm.controls.password.errors?.minlength"
+      >A senha deve ter no minimo 6 caracteres</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="password">
+    <mat-label>Confirmar Senha</mat-label>
+    <input
+      matInput
+      placeholder="Confirmar Senha"
+      name="passwordConfirmation"
+      formControlName="password_confirm"
+      [attr.type]="viewPassword ? 'text' : 'password'"
+    />
+    <mat-icon matSuffix (click)="toggleViewPassword()">visibility</mat-icon>
+    <div
+      *ngIf="
+        registerForm.controls.password_confirm.invalid &&
+        (registerForm.controls['password_confirm'].dirty ||
+          registerForm.controls['password_confirm'].touched)
+      "
+      class="alert alert-danger"
+    ></div>
+    <mat-error *ngIf="registerForm.controls.password_confirm.errors?.required"
+      >Campo Obrigatório</mat-error
+    >
+    <mat-error *ngIf="registerForm.controls.password_confirm.errors?.minlength"
+      >A senha deve ter no minimo 6 caracteres</mat-error
+    >
+  </mat-form-field>
+
+  <div class="buttons">
+    <button mat-button color="accent" (click)="cancel()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="register()">
+      Confirmar
+    </button>
+  </div>
+</form>
