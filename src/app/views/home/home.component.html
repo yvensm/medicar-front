@@ -1,0 +1,13 @@
+<div class="container">
+  <app-header class="header"></app-header>
+  <mat-card class="card mat-elevation-z4">
+    <div class="table-header">
+      <span class="table-title">Consulta Clinica</span>
+      <button mat-raised-button color="primary" (click)='openCreate()'>
+        <i class="material-icons">add</i>
+        <span>Nova Consulta</span>
+      </button>
+    </div>
+    <app-appointment-read></app-appointment-read>
+  </mat-card>
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <h1 mat-dialog-title>Nova Consulta</h1>
+  <div mat-dialog-content class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Especialidade</mat-label>
+      <mat-select (selectionChange)="especialidadesChange($event.value)">
+        <mat-option></mat-option>
+        <mat-option *ngFor="let spec of especialidades" [value]="spec.id">
+          {{ spec.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Medico</mat-label>
+      <mat-select
+        [disabled]="medicos.length <= 0"
+        (selectionChange)="medicoChange($event.value)"
+      >
+        <mat-option></mat-option>
+        <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+          {{ medico.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data</mat-label>
+      <mat-select
+        [disabled]="agenda.length <= 0"
+        (selectionChange)="dataChange($event.value)"
+        [(ngModel)]="appointment.agenda_id"
+      >
+        <mat-option></mat-option>
+        <mat-option *ngFor="let data of agenda" [value]="data.id">
+          {{ data.dia | date: "dd/MM/yyyy" }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" outline>
+      <mat-label>Hora</mat-label>
+      <mat-select
+        [disabled]="horarios.length <= 0"
+        [(ngModel)]="appointment.horario"
+      >
+        <mat-option></mat-option>
+        <mat-option *ngFor="let hora of horarios" [value]="hora">
+          {{ hora }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-button color="accent" (click)="closeDialog()">
+        Cancelar
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="horarios.length <= 0"
+        (click)="createAppointment()"
+      >
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>
