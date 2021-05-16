@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.my-form-field.mat-form-field-appearance-legacy .mat-input-element {
+  caret-color: #49b4bb;
+color: #49b4bb;
+}
+
+
+.msg-error {
+  color: #fff;
+  background-color: #e35e6b;
+}
+
+.msg-success {
+  color: #fff;
+  background-color: #28a745;
+}
