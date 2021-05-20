@@ -1,0 +1,88 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$medicar-primary: (
+    50 : #e9f6f7,
+    100 : #c8e9eb,
+    200 : #a4dadd,
+    300 : #80cbcf,
+    400 : #64bfc5,
+    500 : #49b4bb,
+    600 : #42adb5,
+    700 : #39a4ac,
+    800 : #319ca4,
+    900 : #218c96,
+    A100 : #d2fbff,
+    A200 : #9ff7ff,
+    A400 : #6cf2ff,
+    A700 : #52f0ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$medicar-accent: (
+    50 : #fafdfe,
+    100 : #f4fbfb,
+    200 : #ecf8f9,
+    300 : #e4f5f7,
+    400 : #dff3f5,
+    500 : #49B4BB,
+    600 : #d5eff1,
+    700 : #cfedef,
+    800 : #caebed,
+    900 : #c0e7ea,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #49B4BB,
+        100 : #49B4BB,
+        200 : #49B4BB,
+        300 : #49B4BB,
+        400 : #49B4BB,
+        500 : #49B4BB,
+        600 : #49B4BB,
+        700 : #49B4BB,
+        800 : #49B4BB,
+        900 : #49B4BB,
+        A100 : #49B4BB,
+        A200 : #49B4BB,
+        A400 : #49B4BB,
+        A700 : #49B4BB,
+    )
+);
+
+$medicar-app-primary: mat-palette($medicar-primary);
+$medicar-app-accent: mat-palette($medicar-primary);
+
+$medicar-app-warn: mat-palette($mat-red);
+
+$medicar-app-theme: mat-light-theme(
+  (
+    color: (
+      primary: $medicar-app-primary,
+      accent: $medicar-app-accent,
+      warn: $medicar-app-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($medicar-app-theme);

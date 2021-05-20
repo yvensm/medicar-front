@@ -1,0 +1,29 @@
+<table mat-table [dataSource]="appointments" class="table">
+  <ng-container matColumnDef="ESPECIALIDADE">
+    <th mat-header-cell *matHeaderCellDef>ESPECIALIDADE</th>
+    <td mat-cell *matCellDef="let row">{{ especialidade(row) }}</td>
+  </ng-container>
+  <ng-container matColumnDef="PROFISSIONAL">
+    <th mat-header-cell *matHeaderCellDef>PROFISSIONAL</th>
+    <td mat-cell *matCellDef="let row">{{ profissional(row) }}</td>
+  </ng-container>
+  <ng-container matColumnDef="DATA">
+    <th mat-header-cell *matHeaderCellDef>DATA</th>
+    <td mat-cell *matCellDef="let row">{{ data(row) | date: "dd/MM/yyyy" }}</td>
+  </ng-container>
+  <ng-container matColumnDef="HORA">
+    <th mat-header-cell *matHeaderCellDef>HORA</th>
+    <td mat-cell *matCellDef="let row">{{ hora(row) }}</td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let row" class="button-container">
+      <button mat-button color="accent" (click)="desmarcar(row.id)">
+        <i class="material-icons">close</i>
+        <span> Desmarcar </span>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
