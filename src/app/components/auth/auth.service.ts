@@ -45,9 +45,13 @@ export class AuthService {
   }
 
   errorHandler(e: any): Observable<any> {
-    let message = e.error.username[0]
-      ? e.error.username[0]
-      : 'Ocorroreu um erro!';
+    let message = 'Ocorroreu um erro!';
+    if(e.error){
+      if(<any[]>Object.values(e.error)[0]){
+        if((<any[]>Object.values(e.error)[0])[0])
+          message = (<any[]>Object.values(e.error)[0])[0]
+      }
+    }
     this.showMessage(message, true);
     return EMPTY;
   }
@@ -61,7 +65,8 @@ export class AuthService {
         newAuthHeader.append(`Authorization`, `Token ${res.token}`);
         this.authHeader = newAuthHeader;
         return res;
-      })
+      }),
+      catchError((e) => this.errorHandler(e))
     );
   }
 

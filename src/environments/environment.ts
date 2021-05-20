@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://intmed-api-medicar.herokuapp.com',
+  apiUrl: 'http://127.0.1:8000',
 };
 
 /*

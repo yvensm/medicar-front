@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../services/snackbar.service';
 import { DoctorAppointmentBook } from './../../models/doctor-appointment-book.model';
 import { Doctor } from './../../models/doctor.model';
 import { map } from 'rxjs/operators';
@@ -14,7 +15,11 @@ import { Injectable } from '@angular/core';
 })
 export class AppointmentService {
   baseUrl = `${environment.apiUrl}`;
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private snackbarService: SnackbarService
+  ) {}
 
   private _appointments = new BehaviorSubject<Appointment[]>([]);
 
@@ -69,14 +74,34 @@ export class AppointmentService {
   }
 
   storeAppointment(body: AppointmentBody): Observable<Appointment> {
-    return this.http.post<Appointment>(`${this.baseUrl}/consultas/`, body, {
-      headers: { Authorization: `Token ${this.auth.token}` },
-    });
+    return this.http
+      .post<Appointment>(`${this.baseUrl}/consultas/`, body, {
+        headers: { Authorization: `Token ${this.auth.token}` },
+      })
+      .pipe(
+        map((obj: any) => {
+          if (obj.message) {
+            this.snackbarService.showMessage(obj.message, true);
+            return <Appointment>{};
+          }
+          return obj;
+        })
+      );
   }
 
   deleteAppointment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/consultas/${id}`, {
-      headers: { Authorization: `Token ${this.auth.token}` },
-    });
+    return this.http
+      .delete<void>(`${this.baseUrl}/consultas/${id}/`, {
+        headers: { Authorization: `Token ${this.auth.token}` },
+      })
+      .pipe(
+        map((obj: any) => {
+          if (obj.message) {
+            this.snackbarService.showMessage(obj.message, true);
+            return;
+          }
+          return;
+        })
+      );
   }
 }

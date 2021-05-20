@@ -48,13 +48,9 @@ export class AppointmentReadComponent implements OnInit {
 
   desmarcar(id: number) {
     this.appointmentService.deleteAppointment(id).subscribe(() => {
-      const newAppoints = [...this.appointmentService.appointments];
-      let removeIdenx = 0;
-      newAppoints.map((app, index) => {
-        if (app.id == id) removeIdenx = index;
+      this.appointmentService.readConsultas().subscribe((appointments) => {
+        this.appointmentService.appointments = appointments;
       });
-      newAppoints.slice(removeIdenx, 1);
-      this.appointmentService.appointments = newAppoints;
     });
   }
 }
